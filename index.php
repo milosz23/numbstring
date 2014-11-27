@@ -1,6 +1,6 @@
 <?php
 
-$number = 10113050;
+$number = 123456789;
 $max_digits = 9;
 //arrays
 $nine = array('zero','one','two','three','four','five','six','seven','eight','nine');
@@ -83,3 +83,13 @@ $result = million($number_as_string, $nine, $tenteen, $ninety) .
 echo "number=$number<br>result= " . $result;
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Numbstring</title>
+</head>
+<body>
+    
+</body>
+</html>
