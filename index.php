@@ -1,32 +1,41 @@
 <?php
 
-$number = 621;
-$string_num = (string)$number;
+$number = 10113050;
+$max_digits = 9;
 //arrays
 $nine = array('zero','one','two','three','four','five','six','seven','eight','nine');
 $ninety = array('','','twenty','thirty','fourty','fifty','sixty','seventy','eighty','ninety');
 $tenteen = array('ten','eleven','twelwe','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen');
 
-
-
-function simple($string_num, $nine, $tenteen, $ninety){
-    $simple_result = '';
-    if ($string_num[0]) {
-        $simple_result .= $nine[ (int)$string_num[0] ] . " hundred ";
+function append_leading_zeros($number, $length){
+    $number_as_string = (string)$number;
+    while ( strlen($number_as_string)<$length ) {
+       $number_as_string = '0' . $number_as_string;
     }
-    if ( (int)$string_num[1] === 1 ) {
-        $simple_result .= $tenteen[ (int)$string_num[0] ];
+    return $number_as_string;
+}
+
+function simple($number_as_string, $nine, $tenteen, $ninety){
+    if ( $number_as_string === 0 ) {
+        return 'zero';
+    }
+    $simple_result = '';
+    if ($number_as_string[0]) {
+        $simple_result .= $nine[ (int)$number_as_string[0] ] . " hundred ";
+    }
+    if ( (int)$number_as_string[1] === 1 ) {
+        $simple_result .= $tenteen[ (int)$number_as_string[2] ];
     }
     else {
-        if ($string_num[1]) {
-            $simple_result .= $ninety[ (int)$string_num[1] ];
+        if ($number_as_string[1]) {
+            $simple_result .= $ninety[ (int)$number_as_string[1] ];
             //add '-' for 'thirty-three'-like digits---------
-            if ($string_num[2]) {
+            if ($number_as_string[2]) {
                 $simple_result .= '-';
             }//----------------------------------------------
         }
-        if ($string_num[2]) {
-            $simple_result .= $nine[ (int)$string_num[2] ];
+        if ($number_as_string[2]) {
+            $simple_result .= $nine[ (int)$number_as_string[2] ];
         }
 
     }
@@ -34,5 +43,43 @@ function simple($string_num, $nine, $tenteen, $ninety){
     return $simple_result;
 }
 
-echo "<br><br> result= " . simple($string_num, $nine, $tenteen, $ninety);
+function million($number_as_string, $nine, $tenteen, $ninety){
+    $str = $number_as_string[0] . $number_as_string[1] . $number_as_string[2];
+    if ( (int)$str ) {
+        $result = simple($str, $nine, $tenteen, $ninety) . ' million ';
+    }
+    else {
+        $result = '';
+    }
+    echo "<br> million  str=$str   result=$result<br>";
+    return $result;
+}
+
+function thousand($number_as_string, $nine, $tenteen, $ninety){
+    $str = $number_as_string[3] . $number_as_string[4] . $number_as_string[5];
+    if ( (int)$str ) {
+        $result = simple($str, $nine, $tenteen, $ninety) . ' thousand ';
+    }
+    else {
+        $result = '';
+    }
+    return $result;
+}
+
+function ones($number_as_string, $nine, $tenteen, $ninety){
+    $str = $number_as_string[6] . $number_as_string[7] . $number_as_string[8];
+    if ( (int)$str ) {
+        $result = simple($str, $nine, $tenteen, $ninety);
+    }
+    else {
+        $result = '';
+    }
+    return $result;
+}
+$number_as_string = append_leading_zeros($number, $max_digits);
+$result = million($number_as_string, $nine, $tenteen, $ninety) . 
+          thousand($number_as_string, $nine, $tenteen, $ninety) . 
+          ones($number_as_string, $nine, $tenteen, $ninety); 
+echo "number=$number<br>result= " . $result;
+
 ?>
