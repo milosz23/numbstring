@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Numbstring</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="ico.jpg">
 </head>
 <body>
     <div class="container">
