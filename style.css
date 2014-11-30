@@ -1,0 +1,26 @@
+body {
+    padding-top: 15px;
+}
+.container {
+    width: 70%;
+    min-width: 300px;
+    margin: auto;
+    .background: blue;
+    text-align: center;
+}
+
+ul{
+    padding: 0;
+    margin-bottom: 50px; 
+}
+
+li {
+    list-style: none;
+    display: inline;
+    margin: 5px 5px 5px 5px;
+}
+
+input{
+    width:23%;
+    min-width: 130px;
+}

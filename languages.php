@@ -1,6 +1,6 @@
 <?php
 
-$data_en = array(
+$english = array(
     'hundred' => " hundred ",
     'dash_digit' => '-',
     'appends_word_million' => array(' million ',' million ',' million '),
@@ -14,12 +14,12 @@ $data_en = array(
     'hundred_to_thousand' => array('zero','one','two','three','four','five','six','seven','eight','nine'),
 );
 
-$data_ru = array(
+$russian = array(
     'hundred' => " ",
     'dash_digit' => " ",
     'appends_word_million' => array(" миллионов "," миллиона "," миллион "),
     'appends_word_thousand' => array(" тысяч "," тысячи "," тысяча "),
-    'zero' => 'zero',
+    'zero' => 'ноль',
 
     'zero_to_nine' => array('ноль','один','два','три','четыре','пять','шесть','семь','восемь','девять'),
     'zero_to_nine_fem' => array('ноль','одна','две','три','четыре','пять','шесть','семь','восемь','девять'),
@@ -28,7 +28,7 @@ $data_ru = array(
     'hundred_to_thousand' => array("","сто","двести","триста","четыреста","пятьсот","шестьсот","семьсот","восемьсот","девятьсот"),
 );
 
-$data_ua = array(
+$ukrainian = array(
     'hundred' => " ",
     'dash_digit' => " ",
     'appends_word_million' => array(" мільйонів "," мільйона "," мільйон "),

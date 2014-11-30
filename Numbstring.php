@@ -1,39 +1,38 @@
 <?php
- require 'data.php';
+
 /**
-* 
+* Class transforms numbers to text form
 */
 class Numbstring
 {
-    private $number;
-    private $max_length = 9;
-    private $num_as_string;
+    private $number;         // input number
+    private $max_length = 9; // standard lenght of input number
+    private $num_as_string;  // input number,with type of string
 
-    //attributes below are different for diff langs and will be fetched from data.php
-    protected $hundred = " hundred ";
-    protected $dash_digit = '-';
-    protected $appends_word_million = array(' million ',' million ',' million ');
-    protected $appends_word_thousand = array(' thousand ',' thousand ',' thousand ');
-    protected $zero = 'zero';
+    //attributes below are different for diff langs and will be fetched from languages.php
+    private $hundred = "";
+    private $dash_digit = "";
+    private $appends_word_million = array();
+    private $appends_word_thousand = array();
+    private $zero = "";
 
-    protected $zero_to_nine = array('zero','one','two','three','four','five','six','seven','eight','nine');
-    protected $zero_to_nine_fem = array('zero','one','two','three','four','five','six','seven','eight','nine');
-    protected $ten_to_nineteen = array('ten','eleven','twelwe','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen');
-    protected $to_ninety = array('','','twenty','thirty','fourty','fifty','sixty','seventy','eighty','ninety');
-    protected $hundred_to_thousand = array('zero','one','two','three','four','five','six','seven','eight','nine');
+    private $zero_to_nine = array();
+    private $zero_to_nine_fem = array();
+    private $ten_to_nineteen = array();
+    private $to_ninety = array();
+    private $hundred_to_thousand = array();
     //-------------------------------------------------------------------------------------
 
 
     /**
-     * CONSTRUCT
+     * Gets input number and language data. Prepare them for following usage
      */
     function __construct($number,$data)
     {
         $this->number = $number;
-        echo $number . "<br>";
         $this->num_as_string = $this->append_leading_zeros();
 
-        //hyvhjkblbuvcuiviuik
+        //getting data from languages.php
         $this->hundred = $data['hundred'];
         $this->dash_digit = $data['dash_digit'];
         $this->appends_word_million = $data['appends_word_million'];
@@ -49,7 +48,7 @@ class Numbstring
     }
 
     /**
-     * APPEND LEADING
+     * Makes the number of standard lenght by appending zeros in front of it
      */
     private function append_leading_zeros()
     {
@@ -62,7 +61,7 @@ class Numbstring
     }
 
     /**
-     * THREE DIGITS TRANSFORM
+     * Transforms 3-digits number to text form 
      */
     private function three_digits_transform($string, $zero_to_nine)
     {
@@ -81,7 +80,7 @@ class Numbstring
             if ($string[1]) 
             {
                 $simple_result .= $this->to_ninety[ (int)$string[1] ];
-                //add '-' for 'thirty-three'-like digits---------
+                //adds '-' for 'thirty-three'-like digits---------
                 if ($string[2]) 
                 {
                     $simple_result .= $this->dash_digit;
@@ -98,9 +97,9 @@ class Numbstring
     }
     
     /**
-     * MILLION word
+     * Adds word 'million' or 'thousand' after 3-digits number
      */
-    protected function word_million_thousand($million_thousand,$appends)
+    private function word_million_thousand($million_thousand,$appends)
     {
         if ( strpos("056789", $million_thousand[2]) !== FALSE || $million_thousand[1] === '1') 
         {
@@ -119,7 +118,7 @@ class Numbstring
     }
 
     /**
-     * GET RESULT
+     * Gets final result of transformation number to text
      */
     public function get_result()
     {
@@ -130,6 +129,7 @@ class Numbstring
         }
         else
         {
+            //this 3 strings represents 3-digits numbers with weight of million,thousand or ones
             $million  = $this->num_as_string[0] . $this->num_as_string[1] . $this->num_as_string[2];
             $thousand = $this->num_as_string[3] . $this->num_as_string[4] . $this->num_as_string[5];        
             $ones     = $this->num_as_string[6] . $this->num_as_string[7] . $this->num_as_string[8];
