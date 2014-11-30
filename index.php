@@ -1,6 +1,6 @@
 <?php
 
-$number = 123456789;
+$number = 231456000;
 $max_digits = 9;
 //arrays
 $nine = array('zero','one','two','three','four','five','six','seven','eight','nine');
@@ -63,6 +63,7 @@ function thousand($number_as_string, $nine, $tenteen, $ninety){
     else {
         $result = '';
     }
+    echo "<br> thousand  str=$str   result=$result<br>";
     return $result;
 }
 
@@ -74,6 +75,7 @@ function ones($number_as_string, $nine, $tenteen, $ninety){
     else {
         $result = '';
     }
+    echo "<br> ones  str=$str   result=$result<br>";
     return $result;
 }
 $number_as_string = append_leading_zeros($number, $max_digits);

@@ -1,6 +1,6 @@
 <?php
 
-$number = 307654821;
+$number = 302652821;
 $max_digits = 9;
 //arrays
 $nine_ru = array('ноль','один','два','три','четыре','пять','шесть','семь','восемь','девять');
@@ -23,6 +23,7 @@ function simple($number_as_string, $nine_ru, $tenteen_ru, $ninety_ru,$hundred_ru
         return 'zero';
     }
     $simple_result = '';
+    
     if ($number_as_string[0]) {
         $simple_result .= $hundred_ru[ (int)$number_as_string[0] ] . " ";
     }
